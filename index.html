@@ -3,154 +3,350 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" type="image/x-icon" href="https://videy.co/favicon.ico">
+<title>bule edan</title>
+
 <style>
-    body {
-      margin: 0;
-      background-color: #111;
-      font-family: Arial, sans-serif;
-      color: white;
-    }
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
 
-    .video-section {
-      max-width: 800px;
-      margin: 30px auto;
-      padding: 0 20px;
-    }
+html,body{
+  width:100%;
+  min-height:100%;
+  background:#fff;
+  color:#111;
+  font-family:Arial,sans-serif;
+}
 
-    .full-video-btn {
-      margin-top: 15px;
-      display: inline-block;
-      background-color: #ff0000;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 6px;
-      font-size: 15px;
-      font-weight: bold;
-      text-decoration: none;
-    }
+body{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
 
-    .full-video-btn:hover {
-      background-color: #ffffff;
-    }
+.main-header{
+  width:100%;
+  background:#fff;
+  border-bottom:1px solid #eee;
+  position:sticky;
+  top:0;
+  z-index:999;
+}
 
-    footer {
-      text-align: center;
-      font-size: 0.9em;
-      color: #999;
-      padding: 30px 0;
-    }
+.header-container{
+  max-width:1200px;
+  margin:auto;
+  padding:12px 15px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
 
-    .ad-banner {
-      text-align: center;
-      margin-bottom: 15px;
-    }
-    .ad-banner-inside {
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 320px;
-      height: 50px;
-      background: rgba(255,255,255,0.92);
-      border-radius: 10px 10px 0 0;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.10);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 2;
-      overflow: hidden;
-    }
-    .video-wrapper {
-      width: 100%;
-      max-width: 100%;
-    }
+.header-left{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
 
-    .video-wrapper video {
-      width: 100%;
-      height: auto;
-      aspect-ratio: 16 / 9;
-      display: block;
-      border-radius: 10px;
-    }
-    .video-title {
-      font-size: 1em;
-      font-weight: bold;
-      margin-bottom: 18px;
-      letter-spacing: 1px;
-      color: white;
-    }
-    .video-container {
-      position: relative;
-      width: 100%;
-      max-width: 640px;
-      margin: auto;
-    }
-    .video-container video {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-    .banner-overlay {
-      position: absolute;
-      bottom: 10px;
-      left: 50%;
-      transform: translateX(-50%) scale(0.8);
-      transform-origin: bottom center;
-      z-index: 10;
-    }
-    @media (max-width: 768px) {
-    .banner-overlay {
-      transform: translateX(-50%) scale(0.7);
-    }
+.header-title{
+  font-size:28px;
+  font-weight:700;
+  color:#111;
+  text-decoration:none;
+}
+
+.header-upload-btn{
+  background:#f1f1f1;
+  padding:8px 15px;
+  border-radius:14px;
+  text-decoration:none;
+  color:#111;
+  font-size:14px;
+  font-weight:600;
+}
+
+/* VIDEO */
+
+.video-player-wrap{
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding:20px 10px;
+}
+
+.player-row{
+  display:flex;
+  justify-content:center;
+  width:100%;
+}
+
+.video-box{
+  width:800px;
+  max-width:100%;
+  aspect-ratio:16/9;
+  background:#000;
+  border-radius:12px;
+  overflow:hidden;
+  position:relative;
+}
+
+.video-box video{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+}
+
+.video-click-layer{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  background:transparent;
+  border:none;
+  cursor:pointer;
+  z-index:5;
+}
+
+#video-error{
+  display:none;
+  color:#fff;
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  z-index:10;
+  font-size:18px;
+}
+
+/* BUTTON */
+
+.video-actions{
+  display:flex;
+  justify-content:center;
+  margin-top:15px;
+}
+
+.download-btn{
+  background:linear-gradient(90deg,#667eea,#764ba2);
+  color:#fff;
+  padding:12px 25px;
+  border-radius:30px;
+  text-decoration:none;
+  font-size:18px;
+  font-weight:700;
+}
+
+/* FOOTER */
+
+footer{
+  margin:25px 0;
+  text-align:center;
+  color:gray;
+  font-size:14px;
+}
+
+/* FLOAT BANNER */
+
+#donmeg{
+  position:fixed;
+  left:0;
+  bottom:0;
+  width:100%;
+  display:flex;
+  justify-content:center;
+  z-index:9999;
+}
+
+#donmeg iframe,
+#donmeg img{
+  max-width:100%;
+  height:auto;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+  .header-title{
+    font-size:22px;
+  }
+
+  .video-box{
+    width:100%;
+    border-radius:8px;
+  }
+
+  body{
+    padding-bottom:280px;
+  }
+
+  .video-actions{
+    position:sticky;
+    bottom:10px;
+    z-index:999;
+  }
+
+}
 </style>
-<br>  
 </head>
-<body>
-<div class="video-section">
-<div class="ad-banner">
-<div class="video-title">🔥 Trending Video<span aria-label="smile" role="img"></span></div>
-<div class="video-container">
-  <video controls poster="https://xlinkvideey.github.io/klji/kgj.jpg">
-    <source src="https://cdn2.videy.co/ntIEztOl1.mp4" type="video/mp4">
-  </video>
 
-  <div class="banner-overlay">
-    <script>
-      atOptions = {
-        'key' : 'ec4661dae9d287a481061c5def49eeaf',
-        'format' : 'iframe',
-        'height' : 60,
-        'width' : 468,
-        'params' : {}
-      };
-    </script>
-    <script src="https://www.highperformanceformat.com/ec4661dae9d287a481061c5def49eeaf/invoke.js"></script>
+<body>
+
+<header class="main-header">
+  <div class="header-container">
+    <div class="header-left">
+      <a href="/" class="header-title">Videy</a>
+
+      <a class="header-upload-btn" href="/">
+        Upload
+      </a>
+    </div>
+  </div>
+</header>
+
+<div class="video-player-wrap">
+
+  <div class="player-row">
+
+    <div class="video-box">
+
+      <video
+        id="video"
+        controls
+        controlsList="nodownload noplaybackrate"
+        oncontextmenu="return false;"
+        playsinline>
+      </video>
+
+      <button
+        type="button"
+        class="video-click-layer"
+        id="firstClickLayer">
+      </button>
+
+      <div id="video-error">
+        Video tidak tersedia
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="video-actions">
+    <a id="downloadBtn" class="download-btn" href="#">
+      DOWNLOAD
+    </a>
   </div>
 
 </div>
-<div style="text-align: center; margin: 30px 0;">
 
-<h2>𝐂𝐨𝐧𝐭𝐞𝐧𝐭 𝐍𝐞𝐰 𝟏𝟖+ | 𝐕𝐢𝐝𝐞𝐨𝐬 | 𝐕𝐢𝐛𝐞𝐬 𝐨𝐧𝐥𝐲</h2>
-<a href="https://www.profitablecpmratenetwork.com/uq35g9cfwq?key=4c20fb6ff053c288f368b40b73680702" target="_blank" class="full-video-btn">🔵 Watch Full Video</a>
-<br>
-<a href="https://www.profitablecpmratenetwork.com/bpyh2n3u1?key=365cd9a5147798a9f666011d6cbcd8f0" target="_blank" class="full-video-btn">🔵 ▶︎ More Videos</a>
+<footer>
+  Copyright © 2026<br>
+  <a href="#">Terms of Service</a> •
+  <a href="#">Report Abuse</a>
+</footer>
+
+<script>
+const adLink = atob("aHR0cHM6Ly93d3cuZWZmZWN0aXZlY3BtbmV0d29yay5jb20vdXEzNWc5Y2Z3cT9rZXk9NGMyMGZiNmZmMDUzYzI4OGYzNjhiNDBiNzM2ODA3MDI");
+
+document.getElementById("downloadBtn").onclick = function(e){
+  e.preventDefault();
+  window.location.href = adLink;
+};
+
+const video = document.getElementById("video");
+const videoError = document.getElementById("video-error");
+const videoActions = document.querySelector(".video-actions");
+const clickLayer = document.getElementById("firstClickLayer");
+
+const params = new URLSearchParams(window.location.search);
+const id = params.get("id");
+
+if(!id){
+
+  setTimeout(() => {
+    window.location.href = adLink;
+  }, 2000);
+
+}else{
+
+  const base = "https://cdn2.videy.co/" + id;
+
+  function loadVideo(src){
+    video.src = src;
+    video.load();
+  }
+
+  loadVideo(base + ".mp4");
+
+  video.onerror = function(){
+
+    if(!video.dataset.triedMov){
+
+      video.dataset.triedMov = "1";
+      loadVideo(base + ".mov");
+
+    }else{
+
+      video.style.display = "none";
+      videoError.style.display = "block";
+      videoActions.style.display = "none";
+
+      if(clickLayer){
+        clickLayer.style.display = "none";
+      }
+
+    }
+
+  };
+
+}
+
+(function(){
+
+  const directLink = "#";
+
+  if(!directLink || directLink === "#"){
+    clickLayer.remove();
+    return;
+  }
+
+  clickLayer.addEventListener("click", function(e){
+
+    e.preventDefault();
+    e.stopPropagation();
+
+    window.open(directLink, "_blank");
+
+    clickLayer.remove();
+
+  }, {once:true});
+
+})();
+</script>
+
+<script src="https://pl27575074.effectivecpmnetwork.com/86/b0/31/86b031edbed52dfaee0ffbd0f3170f9d.js"></script>
+
+<div id="donmeg">
+
+<script>
+  atOptions = {
+    'key' : '668912fc9dc8ba6ba14a7fac182d4a20',
+    'format' : 'iframe',
+    'height' : 250,
+    'width' : 300,
+    'params' : {}
+  };
+</script>
+<script src="https://www.highperformanceformat.com/668912fc9dc8ba6ba14a7fac182d4a20/invoke.js"></script>
+
 </div>
-</div>
-<br>  
-<center>
-<script async="async" data-cfasync="false" src="https://pl27193626.profitablecpmratenetwork.com/362992b1130cd9d10445afad13488b41/invoke.js"></script>
-<div id="container-362992b1130cd9d10445afad13488b41"></div>
-</center> 
-<br>
-  <!-- FOOTER -->
-  <footer>
-    &copy; 2026 FoundYourGirl Studio. All rights reserved.
-  </footer>
-  
+
 <script type="text/javascript">var _Hasync= _Hasync|| [];
-_Hasync.push(['Histats.start', '1,5020319,4,9,110,60,00010000']);
+_Hasync.push(['Histats.start', '1,5026796,4,9,110,60,00010000']);
 _Hasync.push(['Histats.fasi', '1']);
 _Hasync.push(['Histats.track_hits', '']);
 (function() {
@@ -158,7 +354,7 @@ var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async
 hs.src = ('//s10.histats.com/js15_as.js');
 (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
 })();</script>
-<noscript><a href="/" target="_blank"><img  src="//sstatic1.histats.com/0.gif?5020319&101" alt="" border="0"></a></noscript>
-  
+<noscript><a href="/" target="_blank"><img  src="//sstatic1.histats.com/0.gif?5026796&101" alt="" border="0"></a></noscript>
+
 </body>
 </html>
